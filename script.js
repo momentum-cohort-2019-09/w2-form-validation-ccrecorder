@@ -99,14 +99,34 @@ q('#parking-form').addEventListener('submit', function(event) {
 	let daysTextParent = q('#days');
 	let daysText = daysTextParent.value.trim();
 	if (!daysText) {
-		markInvalid(daysTextParent, 'Must be a valid date');
+		markInvalid(daysTextParent, 'Must be a valid number');
 	} else {
 		markValid(daysTextParent);
 	}
 });
 
 //Checks Credit Card
+q('#parking-form').addEventListener('submit', function(event) {
+	event.preventDefault();
+	let ccParent = q('#credit-card');
+	let ccText = ccParent.value.trim();
+	if (!ccText || validateCardNumber(ccText) === false) {
+		markInvalid(ccParent, 'Valid Card Number Required');
+	} else {
+		markValid(ccParent);
+	}
+});
 
 //Checks CVV
+q('#parking-form').addEventListener('submit', function(event) {
+	event.preventDefault();
+	let cvvParent = q('#cvv');
+	let cvvText = cvvParent.value.trim();
+	if (!cvvText || cvvText.length !== 3 || isNaN(cvvText)) {
+		markInvalid(cvvParent, 'Yo, Valid CVV code needed');
+	} else {
+		markValid(cvvParent);
+	}
+});
 
 //Checks Exp
